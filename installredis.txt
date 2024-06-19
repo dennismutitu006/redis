@@ -1,0 +1,38 @@
+First, download the Redis source code as a tarball:
+
+$ redisurl="http://download.redis.io/redis-stable.tar.gz"
+$ curl -s -o redis-stable.tar.gz $redisurl
+Next, switch over to root and extract the archive’s source code to /usr/local/lib/:
+
+$ sudo su root
+$ mkdir -p /usr/local/lib/
+$ chmod a+w /usr/local/lib/
+$ tar -C /usr/local/lib/ -xzf redis-stable.tar.gz
+Optionally, you can now remove the archive itself:
+
+$ rm redis-stable.tar.gz
+This will leave you with a source code repository at /usr/local/lib/redis-stable/. Redis is written in C, so you’ll need to compile, link, and install with the make utility:
+
+$ cd /usr/local/lib/redis-stable/
+$ make && make install
+Using make install does two actions:
+
+The first make command compiles and links the source code.
+
+The make install part takes the binaries and copies them to /usr/local/bin/ so that you can run them from anywhere (assuming that /usr/local/bin/ is in PATH).
+
+Here are all the steps so far:
+
+$ redisurl="http://download.redis.io/redis-stable.tar.gz"
+$ curl -s -o redis-stable.tar.gz $redisurl
+$ sudo su root
+$ mkdir -p /usr/local/lib/
+$ chmod a+w /usr/local/lib/
+$ tar -C /usr/local/lib/ -xzf redis-stable.tar.gz
+$ rm redis-stable.tar.gz
+$ cd /usr/local/lib/redis-stable/
+$ make && make install
+At this point, take a moment to confirm that Redis is in your PATH and check its version:
+
+$ redis-cli --version
+redis-cli 5.0.3
